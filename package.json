@@ -1,8 +1,8 @@
 {
-  "name": "@stencil/starter",
+  "name": "kokio",
   "private": true,
   "version": "0.0.1",
-  "description": "Stencil App Starter",
+  "description": "Kokio is a test case and execution management system.",
   "files": [
     "dist/"
   ],
@@ -28,14 +28,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ionic-team/stencil-app-starter.git"
+    "url": "git+https://github.com/gopherr127/kokio.git"
   },
-  "author": "Ionic Team",
+  "author": "Geoffrey Rodgers",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ionic-team/stencil"
+    "url": "https://github.com/gopherr127/kokio"
   },
-  "homepage": "https://github.com/ionic-team/stencil",
+  "homepage": "https://github.com/gopherr127/kokio",
   "jest": {
     "transform": {
       "^.+\\.(js|ts|tsx)$": "<rootDir>/node_modules/@stencil/core/testing/jest.preprocessor.js"
