@@ -1,4 +1,4 @@
-import { Component, Element, Prop, State } from '@stencil/core';
+import { Component, Element, Listen, Prop, State } from '@stencil/core';
 import { ENV } from '../../../environments/environment';
 import { Project } from '../../../interfaces/interfaces';
 
@@ -24,10 +24,11 @@ export class ProjectsList {
     this.projectsList = this.el.querySelector('#projectsList');
   }
 
+  @Listen('body:ionModalDidDismiss')
   async loadProjects() {
     
     let response = await fetch(
-      this.apiBaseUrl + "/projects", { 
+      `${this.apiBaseUrl}/projects`, { 
         method: "GET"
     });
 

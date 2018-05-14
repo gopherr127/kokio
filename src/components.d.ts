@@ -30,6 +30,39 @@ import '@ionic/core';
 declare global {
 
   namespace StencilComponents {
+    interface ProjectCreate {
+
+    }
+  }
+
+  interface HTMLProjectCreateElement extends StencilComponents.ProjectCreate, HTMLStencilElement {}
+
+  var HTMLProjectCreateElement: {
+    prototype: HTMLProjectCreateElement;
+    new (): HTMLProjectCreateElement;
+  };
+  interface HTMLElementTagNameMap {
+    'project-create': HTMLProjectCreateElement;
+  }
+  interface ElementTagNameMap {
+    'project-create': HTMLProjectCreateElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'project-create': JSXElements.ProjectCreateAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface ProjectCreateAttributes extends HTMLAttributes {
+
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
     interface ProjectsList {
 
     }
