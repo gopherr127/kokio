@@ -10,6 +10,10 @@ export class AppRoot {
   @Prop({connect: 'ion-nav'}) nav;
   @State() isUserAuthenticated: boolean;
 
+  adminPages = [
+    { title: 'Projects',    url: '/projects',     icon: 'albums' },
+  ];
+
   async componentWillLoad() {
     
     this.tryUpdateIsUserAuthenticated();
@@ -46,15 +50,68 @@ export class AppRoot {
     navCtrl.setRoot('app-welcome');
   }
 
+  renderRouteConfig() {
+    return(
+      <ion-router useHash={false}>
+        <ion-route-redirect from='/' to={this.isUserAuthenticated ? '/dashboard' : '/welcome'} ></ion-route-redirect>
+        <ion-route url='/welcome' component='app-welcome'></ion-route>
+        <ion-route url='/dashboard' component='user-dashboard'></ion-route>
+        <ion-route url='/projects' component='projects-list'></ion-route>
+      </ion-router>
+    );
+  }
+
+  renderMenuForAuthenticatedUser() {
+    return [
+      <ion-list>
+        <ion-list-header>
+          Administration
+        </ion-list-header>
+        {this.adminPages.map((page) =>
+          <ion-menu-toggle autoHide={false}>
+            <ion-item href={page.url}>
+              <ion-icon slot="start" name={page.icon}></ion-icon>
+              <ion-label>
+                {page.title}
+              </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        )}
+      </ion-list>,
+      <p></p>,      
+      <ion-list>
+        <ion-list-header>
+          Account
+        </ion-list-header>
+        <ion-menu-toggle autoHide={false}>
+          <ion-item button onClick={ () => this.handleSignoutClick() }>
+            <ion-icon slot="start" name='exit'></ion-icon>
+            <ion-label>Sign Out</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-list>
+    ];
+  }
+
+  renderMenuContent() {
+    return(
+      <ion-content>
+        {this.isUserAuthenticated
+          ? 
+            this.renderMenuForAuthenticatedUser()
+          : <ion-item button onClick={ () => this.handleSigninClick() }>
+              <ion-label>Sign In</ion-label>
+            </ion-item>
+        }
+      </ion-content>
+    );
+  }
+
   render() {
     return(
       <ion-app>
 
-        <ion-router useHash={false}>
-          <ion-route-redirect from='/' to={this.isUserAuthenticated ? '/dashboard' : '/welcome'} ></ion-route-redirect>
-          <ion-route url='/welcome' component='app-welcome'></ion-route>
-          <ion-route url='/dashboard' component='user-dashboard'></ion-route>
-        </ion-router>
+        { this.renderRouteConfig() }
 
         <ion-split-pane>
 
@@ -66,16 +123,7 @@ export class AppRoot {
               </ion-toolbar>
             </ion-header>
 
-            <ion-content forceOverscroll={false}>
-              <ion-item button style={{ display : this.isUserAuthenticated ? 'none' : 'block' }}
-                        onClick={ () => this.handleSigninClick() }>
-                <ion-label>Sign In</ion-label>
-              </ion-item>
-              <ion-item button style={{ display : this.isUserAuthenticated ? 'block' : 'none' }}
-                        onClick={ () => this.handleSignoutClick() }>
-                <ion-label>Sign Out</ion-label>
-              </ion-item>
-            </ion-content>
+            { this.renderMenuContent() }
 
           </ion-menu>
 

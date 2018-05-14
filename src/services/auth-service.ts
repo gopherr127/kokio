@@ -11,10 +11,10 @@ export class AuthenticationService {
     this.clientUrl = new ENV().clientUrl();
 
     this.authClient = new auth0.WebAuth({
-      domain: 'meticulos.auth0.com',
-      clientID: 'L589mhjfWRx7PKbvTI24lkN6FNmQdDRH',
+      domain: 'atlasrfid.auth0.com',
+      clientID: 'hf15I23vrah42cfDWsrHC4UGo1j6thpp',
       redirectUri: `${this.clientUrl}/`,
-      audience: 'https://meticulos.auth0.com/userinfo',
+      audience: 'https://atlasrfid.auth0.com/userinfo',
       responseType: 'token id_token',
       scope: 'openid',
       leeway: 60

@@ -11,7 +11,12 @@ export class AppWelcome {
         <ion-toolbar>
           <ion-title>Welcome!</ion-title>
         </ion-toolbar>
-      </ion-header>
+      </ion-header>,
+      <ion-content>
+        <ion-item>
+          <ion-label>Hi there! Click "Sign In" to get started.</ion-label>
+        </ion-item>
+      </ion-content>
     ];
   }
 }

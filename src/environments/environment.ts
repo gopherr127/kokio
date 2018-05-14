@@ -20,7 +20,7 @@ export class ENV {
   serverUrl() {
     switch (ENV.currentEnvironment) {
       case "dev": {
-        return "http://localhost:10652";
+        return "http://localhost:64659";
       }
       case "prod": {
         return "https://kokio-server.azurewebsites.net";
