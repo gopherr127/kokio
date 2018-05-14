@@ -99,6 +99,72 @@ declare global {
 declare global {
 
   namespace StencilComponents {
+    interface AppRoot {
+
+    }
+  }
+
+  interface HTMLAppRootElement extends StencilComponents.AppRoot, HTMLStencilElement {}
+
+  var HTMLAppRootElement: {
+    prototype: HTMLAppRootElement;
+    new (): HTMLAppRootElement;
+  };
+  interface HTMLElementTagNameMap {
+    'app-root': HTMLAppRootElement;
+  }
+  interface ElementTagNameMap {
+    'app-root': HTMLAppRootElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'app-root': JSXElements.AppRootAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface AppRootAttributes extends HTMLAttributes {
+
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
+    interface AppSignin {
+
+    }
+  }
+
+  interface HTMLAppSigninElement extends StencilComponents.AppSignin, HTMLStencilElement {}
+
+  var HTMLAppSigninElement: {
+    prototype: HTMLAppSigninElement;
+    new (): HTMLAppSigninElement;
+  };
+  interface HTMLElementTagNameMap {
+    'app-signin': HTMLAppSigninElement;
+  }
+  interface ElementTagNameMap {
+    'app-signin': HTMLAppSigninElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'app-signin': JSXElements.AppSigninAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface AppSigninAttributes extends HTMLAttributes {
+
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
     interface LazyImg {
       'alt': string;
       'src': string;
