@@ -26,75 +26,6 @@ declare global {
 import 'ionicons';
 import '@ionic/core';
 
-import {
-  EventEmitter,
-} from '@stencil/core';
-
-declare global {
-
-  namespace StencilComponents {
-    interface AppHome {
-
-    }
-  }
-
-  interface HTMLAppHomeElement extends StencilComponents.AppHome, HTMLStencilElement {}
-
-  var HTMLAppHomeElement: {
-    prototype: HTMLAppHomeElement;
-    new (): HTMLAppHomeElement;
-  };
-  interface HTMLElementTagNameMap {
-    'app-home': HTMLAppHomeElement;
-  }
-  interface ElementTagNameMap {
-    'app-home': HTMLAppHomeElement;
-  }
-  namespace JSX {
-    interface IntrinsicElements {
-      'app-home': JSXElements.AppHomeAttributes;
-    }
-  }
-  namespace JSXElements {
-    export interface AppHomeAttributes extends HTMLAttributes {
-
-    }
-  }
-}
-
-
-declare global {
-
-  namespace StencilComponents {
-    interface AppProfile {
-      'name': string;
-    }
-  }
-
-  interface HTMLAppProfileElement extends StencilComponents.AppProfile, HTMLStencilElement {}
-
-  var HTMLAppProfileElement: {
-    prototype: HTMLAppProfileElement;
-    new (): HTMLAppProfileElement;
-  };
-  interface HTMLElementTagNameMap {
-    'app-profile': HTMLAppProfileElement;
-  }
-  interface ElementTagNameMap {
-    'app-profile': HTMLAppProfileElement;
-  }
-  namespace JSX {
-    interface IntrinsicElements {
-      'app-profile': JSXElements.AppProfileAttributes;
-    }
-  }
-  namespace JSXElements {
-    export interface AppProfileAttributes extends HTMLAttributes {
-      'name'?: string;
-    }
-  }
-}
-
 
 declare global {
 
@@ -132,30 +63,30 @@ declare global {
 declare global {
 
   namespace StencilComponents {
-    interface AppSignin {
+    interface AppWelcome {
 
     }
   }
 
-  interface HTMLAppSigninElement extends StencilComponents.AppSignin, HTMLStencilElement {}
+  interface HTMLAppWelcomeElement extends StencilComponents.AppWelcome, HTMLStencilElement {}
 
-  var HTMLAppSigninElement: {
-    prototype: HTMLAppSigninElement;
-    new (): HTMLAppSigninElement;
+  var HTMLAppWelcomeElement: {
+    prototype: HTMLAppWelcomeElement;
+    new (): HTMLAppWelcomeElement;
   };
   interface HTMLElementTagNameMap {
-    'app-signin': HTMLAppSigninElement;
+    'app-welcome': HTMLAppWelcomeElement;
   }
   interface ElementTagNameMap {
-    'app-signin': HTMLAppSigninElement;
+    'app-welcome': HTMLAppWelcomeElement;
   }
   namespace JSX {
     interface IntrinsicElements {
-      'app-signin': JSXElements.AppSigninAttributes;
+      'app-welcome': JSXElements.AppWelcomeAttributes;
     }
   }
   namespace JSXElements {
-    export interface AppSigninAttributes extends HTMLAttributes {
+    export interface AppWelcomeAttributes extends HTMLAttributes {
 
     }
   }
@@ -165,68 +96,30 @@ declare global {
 declare global {
 
   namespace StencilComponents {
-    interface LazyImg {
-      'alt': string;
-      'src': string;
-      'width': number;
+    interface UserDashboard {
+
     }
   }
 
-  interface HTMLLazyImgElement extends StencilComponents.LazyImg, HTMLStencilElement {}
+  interface HTMLUserDashboardElement extends StencilComponents.UserDashboard, HTMLStencilElement {}
 
-  var HTMLLazyImgElement: {
-    prototype: HTMLLazyImgElement;
-    new (): HTMLLazyImgElement;
+  var HTMLUserDashboardElement: {
+    prototype: HTMLUserDashboardElement;
+    new (): HTMLUserDashboardElement;
   };
   interface HTMLElementTagNameMap {
-    'lazy-img': HTMLLazyImgElement;
+    'user-dashboard': HTMLUserDashboardElement;
   }
   interface ElementTagNameMap {
-    'lazy-img': HTMLLazyImgElement;
+    'user-dashboard': HTMLUserDashboardElement;
   }
   namespace JSX {
     interface IntrinsicElements {
-      'lazy-img': JSXElements.LazyImgAttributes;
+      'user-dashboard': JSXElements.UserDashboardAttributes;
     }
   }
   namespace JSXElements {
-    export interface LazyImgAttributes extends HTMLAttributes {
-      'alt'?: string;
-      'onLazyImgloaded'?: (event: CustomEvent<HTMLImageElement>) => void;
-      'src'?: string;
-      'width'?: number;
-    }
-  }
-}
-
-
-declare global {
-
-  namespace StencilComponents {
-    interface MyApp {
-
-    }
-  }
-
-  interface HTMLMyAppElement extends StencilComponents.MyApp, HTMLStencilElement {}
-
-  var HTMLMyAppElement: {
-    prototype: HTMLMyAppElement;
-    new (): HTMLMyAppElement;
-  };
-  interface HTMLElementTagNameMap {
-    'my-app': HTMLMyAppElement;
-  }
-  interface ElementTagNameMap {
-    'my-app': HTMLMyAppElement;
-  }
-  namespace JSX {
-    interface IntrinsicElements {
-      'my-app': JSXElements.MyAppAttributes;
-    }
-  }
-  namespace JSXElements {
-    export interface MyAppAttributes extends HTMLAttributes {
+    export interface UserDashboardAttributes extends HTMLAttributes {
 
     }
   }
