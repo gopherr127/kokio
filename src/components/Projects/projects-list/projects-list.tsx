@@ -26,6 +26,7 @@ export class ProjectsList {
   }
 
   @Listen('body:ionModalDidDismiss')
+  @Listen('projectUpdated')
   async loadProjects() {
     
     let response = await fetch(

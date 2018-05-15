@@ -1,4 +1,4 @@
-import { Component, Element, Listen, Prop, State } from '@stencil/core';
+import { Component, Element, Event, EventEmitter, Listen, Prop, State } from '@stencil/core';
 import { ENV } from '../../../environments/environment';
 import { Project } from '../../../interfaces/interfaces';
 
@@ -9,6 +9,7 @@ export class ProjectDetail {
 
   public apiBaseUrl: string = new ENV().apiBaseUrl();
   @Element() el: any;
+  @Event() projectUpdated: EventEmitter;
   @Prop() id: string;
   @State() subtitle: string;
   @State() project: Project;
@@ -45,6 +46,7 @@ export class ProjectDetail {
 
     if (response.ok) {
       
+      this.projectUpdated.emit();
       document.querySelector('ion-router').push('/projects');
     }
   }

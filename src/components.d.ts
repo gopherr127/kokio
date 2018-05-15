@@ -88,6 +88,7 @@ declare global {
   namespace JSXElements {
     export interface ProjectDetailAttributes extends HTMLAttributes {
       'id'?: string;
+      'onProjectUpdated'?: (event: CustomEvent) => void;
     }
   }
 }
