@@ -42,7 +42,7 @@ export class ProjectCreate {
   @Listen('ionChange')
   handleItemTypeChanged(event: any) {
 
-    if (event.target.id === "screenName") {
+    if (event.target.id === "projectName") {
 
       this.name = event.detail.value;
     }
@@ -63,7 +63,7 @@ export class ProjectCreate {
         <ion-item></ion-item>
         <ion-item>
           <ion-label position='fixed'>Name</ion-label>
-          <ion-input id="screenName" debounce={ 200 } value={ this.name }></ion-input>
+          <ion-input id="projectName" debounce={ 200 } value={ this.name }></ion-input>
         </ion-item>
 
       </ion-content>,

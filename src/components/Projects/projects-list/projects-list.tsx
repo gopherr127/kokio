@@ -11,6 +11,7 @@ export class ProjectsList {
   @Element() el: any;
   projectsList: HTMLIonListElement;
   @Prop({ connect: 'ion-modal-controller' }) modalCtrl: HTMLIonModalControllerElement;
+  @Prop({ connect: 'ion-popover-controller' }) popoverCtrl: HTMLIonPopoverControllerElement;
   @State() queryText = '';
   @State() projects: Array<Project> = [];
 
@@ -58,6 +59,19 @@ export class ProjectsList {
       
       await this.loadProjects();
       this.projectsList.closeSlidingItems();
+    }
+  }
+
+  @Listen('ionFocus')
+  async handleElementFocused(event: any) {
+
+    if (event.target.id === "optionsMenu") {
+
+      var popover = await this.popoverCtrl.create({
+        component: 'projects-list-options-menu',
+        ev: event
+      });
+      await popover.present();
     }
   }
 

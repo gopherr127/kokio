@@ -63,6 +63,72 @@ declare global {
 declare global {
 
   namespace StencilComponents {
+    interface ProjectDetail {
+      'id': string;
+    }
+  }
+
+  interface HTMLProjectDetailElement extends StencilComponents.ProjectDetail, HTMLStencilElement {}
+
+  var HTMLProjectDetailElement: {
+    prototype: HTMLProjectDetailElement;
+    new (): HTMLProjectDetailElement;
+  };
+  interface HTMLElementTagNameMap {
+    'project-detail': HTMLProjectDetailElement;
+  }
+  interface ElementTagNameMap {
+    'project-detail': HTMLProjectDetailElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'project-detail': JSXElements.ProjectDetailAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface ProjectDetailAttributes extends HTMLAttributes {
+      'id'?: string;
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
+    interface ProjectsListOptionsMenu {
+
+    }
+  }
+
+  interface HTMLProjectsListOptionsMenuElement extends StencilComponents.ProjectsListOptionsMenu, HTMLStencilElement {}
+
+  var HTMLProjectsListOptionsMenuElement: {
+    prototype: HTMLProjectsListOptionsMenuElement;
+    new (): HTMLProjectsListOptionsMenuElement;
+  };
+  interface HTMLElementTagNameMap {
+    'projects-list-options-menu': HTMLProjectsListOptionsMenuElement;
+  }
+  interface ElementTagNameMap {
+    'projects-list-options-menu': HTMLProjectsListOptionsMenuElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'projects-list-options-menu': JSXElements.ProjectsListOptionsMenuAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface ProjectsListOptionsMenuAttributes extends HTMLAttributes {
+
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
     interface ProjectsList {
 
     }

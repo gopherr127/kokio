@@ -1,4 +1,4 @@
-import { Component, Prop, State } from '@stencil/core';
+import { Component, State } from '@stencil/core';
 import { AuthenticationService } from '../../services/auth-service';
 
 @Component({
@@ -7,7 +7,6 @@ import { AuthenticationService } from '../../services/auth-service';
 export class AppRoot {
   
   public authSvc: AuthenticationService = new AuthenticationService();
-  @Prop({connect: 'ion-nav'}) nav;
   @State() isUserAuthenticated: boolean;
 
   adminPages = [
@@ -46,8 +45,7 @@ export class AppRoot {
   async handleSignoutClick() {
 
     await this.authSvc.clearSession();
-    const navCtrl: HTMLIonNavElement = await (this.nav as any).componentOnReady();
-    navCtrl.setRoot('app-welcome');
+    document.querySelector('ion-nav').setRoot('app-welcome');
   }
 
   renderRouteConfig() {
@@ -57,6 +55,7 @@ export class AppRoot {
         <ion-route url='/welcome' component='app-welcome'></ion-route>
         <ion-route url='/dashboard' component='user-dashboard'></ion-route>
         <ion-route url='/projects' component='projects-list'></ion-route>
+        <ion-route url='/projects/:id' component='project-detail'></ion-route>
       </ion-router>
     );
   }
