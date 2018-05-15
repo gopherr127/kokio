@@ -18,7 +18,6 @@ To start building Kokio locally, clone this repo to a new directory:
 ```bash
 git clone https://github.com/gopherr127/kokio.git
 cd kokio
-git remote rm origin
 ```
 
 and run:
