@@ -1,6 +1,6 @@
 import { Component, Element, Event, EventEmitter, Listen, Prop, State } from '@stencil/core';
 import { ENV } from '../../../environments/environment';
-import { Project } from '../../../interfaces/interfaces';
+import { Project, ProjectRelease } from '../../../interfaces/interfaces';
 
 @Component({
   tag: 'project-detail'
@@ -13,6 +13,7 @@ export class ProjectDetail {
   @Prop() id: string;
   @State() subtitle: string;
   @State() project: Project;
+  @State() releases: Array<ProjectRelease> = [];
   
   async componentWillLoad() {
 
@@ -23,13 +24,27 @@ export class ProjectDetail {
 
     let response = await fetch(
       `${this.apiBaseUrl}/projects/${this.id}`, {
-        method: "GET"
+        method: 'GET'
     });
 
     if (response.ok) {
 
       this.project = await response.json();
-      this.subtitle = `Project: ${this.project.name}`
+      this.subtitle = `Project: ${this.project.name}`;
+      await this.loadProjectReleases();
+    }
+  }
+
+  async loadProjectReleases() {
+
+    let response = await fetch(
+      `${this.apiBaseUrl}/releases/search?projectId=${this.id}`, {
+        method: 'GET'
+    });
+
+    if (response.ok) {
+
+      this.releases = await response.json();
     }
   }
 
@@ -54,6 +69,15 @@ export class ProjectDetail {
   async handleCancelClick() {
 
     document.querySelector('ion-router').push('/projects');
+  }
+
+  async handleAddReleaseClick() {
+
+  }
+
+  async handleDeleteReleaseClick(release: ProjectRelease) {
+
+    release;
   }
 
   @Listen('ionChange')
@@ -100,6 +124,34 @@ export class ProjectDetail {
             <ion-label position='fixed'>Name</ion-label>
             <ion-input id="projectName" required debounce={ 200 } value={ this.project.name }></ion-input>
           </ion-item>
+          
+          <ion-card>
+            <ion-card-header no-padding>
+              <ion-item>
+                <ion-label>Associated Releases</ion-label>
+                <ion-button slot="end" onClick={ () => 
+                  this.handleAddReleaseClick() }>Add
+                </ion-button>
+              </ion-item>
+            </ion-card-header>
+            <ion-card-content>
+              <ion-list id="releasesList">
+                {this.releases.map(release => 
+                  <ion-item-sliding>
+                    <ion-item href={`/releases/${release.id}`}>
+                      <h2>{ release.name }</h2>
+                    </ion-item>
+                    <ion-item-options>
+                      <ion-item-option color="danger" onClick={ () =>
+                          this.handleDeleteReleaseClick(release) }>
+                        Delete
+                      </ion-item-option>
+                    </ion-item-options>
+                  </ion-item-sliding>
+                )}
+              </ion-list>
+            </ion-card-content>
+          </ion-card>
 
       </ion-content>,
 

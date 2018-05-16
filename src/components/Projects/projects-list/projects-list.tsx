@@ -12,6 +12,7 @@ export class ProjectsList {
   projectsList: HTMLIonListElement;
   @Prop({ connect: 'ion-modal-controller' }) modalCtrl: HTMLIonModalControllerElement;
   @Prop({ connect: 'ion-popover-controller' }) popoverCtrl: HTMLIonPopoverControllerElement;
+  @Prop({ connect: 'ion-toast-controller' }) toastCtrl: HTMLIonToastControllerElement;
   @State() queryText = '';
   @State() projects: Array<Project> = [];
 
@@ -61,6 +62,24 @@ export class ProjectsList {
       await this.loadProjects();
       this.projectsList.closeSlidingItems();
     }
+    else {
+
+      if (response.status === 401) {
+
+        this.displayErrorToast("You do not have permission to perform this action.");
+      }
+    }
+  }
+
+  async displayErrorToast(message: string) {
+
+    const toast = await this.toastCtrl.create({
+      message: message,
+      position: 'top',
+      showCloseButton: true
+    });
+
+    toast.present();
   }
 
   @Listen('ionFocus')

@@ -9,8 +9,16 @@ export class AppRoot {
   public authSvc: AuthenticationService = new AuthenticationService();
   @State() isUserAuthenticated: boolean;
 
+  // icons of interest: beaker, flask, arrow-dropright-circle, arrow-dropright, 
+  // checkbox, checkbox-outline, clipboard, done-all, list-box, play, fast-forward
+  userPages = [
+    { title: 'Dashboard',   url: '/dashboard',     icon: 'pulse' },
+    { title: 'Test Suites', url: '/testsuites',    icon: 'folder' }
+  ];
+
   adminPages = [
     { title: 'Projects',    url: '/projects',     icon: 'albums' },
+    { title: 'Releases',    url: '/releases',     icon: 'git-branch' }
   ];
 
   async componentWillLoad() {
@@ -54,14 +62,33 @@ export class AppRoot {
         <ion-route-redirect from='/' to={this.isUserAuthenticated ? '/dashboard' : '/welcome'} ></ion-route-redirect>
         <ion-route url='/welcome' component='app-welcome'></ion-route>
         <ion-route url='/dashboard' component='user-dashboard'></ion-route>
+        <ion-route url='/testsuites' component='testsuites-list'></ion-route>
+        <ion-route url='/testsuites/:id' component='testsuite-detail'></ion-route>
         <ion-route url='/projects' component='projects-list'></ion-route>
         <ion-route url='/projects/:id' component='project-detail'></ion-route>
+        <ion-route url='/releases' component='releases-list'></ion-route>
+        <ion-route url='/releases/:id' component='release-detail'></ion-route>
       </ion-router>
     );
   }
 
   renderMenuForAuthenticatedUser() {
     return [
+      <ion-list>
+        <ion-list-header>
+          Navigation
+        </ion-list-header>
+        {this.userPages.map((page) =>
+          <ion-menu-toggle autoHide={false}>
+            <ion-item href={page.url}>
+              <ion-icon slot="start" name={page.icon}></ion-icon>
+              <ion-label>
+                {page.title}
+              </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        )}
+      </ion-list>,
       <ion-list>
         <ion-list-header>
           Administration
