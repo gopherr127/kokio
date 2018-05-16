@@ -163,6 +163,106 @@ declare global {
 declare global {
 
   namespace StencilComponents {
+    interface ReleaseCreate {
+      'projectId': string;
+    }
+  }
+
+  interface HTMLReleaseCreateElement extends StencilComponents.ReleaseCreate, HTMLStencilElement {}
+
+  var HTMLReleaseCreateElement: {
+    prototype: HTMLReleaseCreateElement;
+    new (): HTMLReleaseCreateElement;
+  };
+  interface HTMLElementTagNameMap {
+    'release-create': HTMLReleaseCreateElement;
+  }
+  interface ElementTagNameMap {
+    'release-create': HTMLReleaseCreateElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'release-create': JSXElements.ReleaseCreateAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface ReleaseCreateAttributes extends HTMLAttributes {
+      'projectId'?: string;
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
+    interface ReleaseDetail {
+      'id': string;
+    }
+  }
+
+  interface HTMLReleaseDetailElement extends StencilComponents.ReleaseDetail, HTMLStencilElement {}
+
+  var HTMLReleaseDetailElement: {
+    prototype: HTMLReleaseDetailElement;
+    new (): HTMLReleaseDetailElement;
+  };
+  interface HTMLElementTagNameMap {
+    'release-detail': HTMLReleaseDetailElement;
+  }
+  interface ElementTagNameMap {
+    'release-detail': HTMLReleaseDetailElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'release-detail': JSXElements.ReleaseDetailAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface ReleaseDetailAttributes extends HTMLAttributes {
+      'id'?: string;
+      'onReleaseUpdated'?: (event: CustomEvent) => void;
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
+    interface ReleasesList {
+
+    }
+  }
+
+  interface HTMLReleasesListElement extends StencilComponents.ReleasesList, HTMLStencilElement {}
+
+  var HTMLReleasesListElement: {
+    prototype: HTMLReleasesListElement;
+    new (): HTMLReleasesListElement;
+  };
+  interface HTMLElementTagNameMap {
+    'releases-list': HTMLReleasesListElement;
+  }
+  interface ElementTagNameMap {
+    'releases-list': HTMLReleasesListElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'releases-list': JSXElements.ReleasesListAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface ReleasesListAttributes extends HTMLAttributes {
+
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
     interface AppRoot {
 
     }

@@ -3,8 +3,9 @@ export interface Project {
   name: string
 }
 
-export interface ProjectRelease {
+export interface Release {
   id: string,
   name: string,
-  projectId: string
+  projectId: string,
+  project: Project
 }

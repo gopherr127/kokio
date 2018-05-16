@@ -1,6 +1,6 @@
 import { Component, Element, Event, EventEmitter, Listen, Prop, State } from '@stencil/core';
 import { ENV } from '../../../environments/environment';
-import { Project, ProjectRelease } from '../../../interfaces/interfaces';
+import { Project, Release } from '../../../interfaces/interfaces';
 
 @Component({
   tag: 'project-detail'
@@ -9,17 +9,25 @@ export class ProjectDetail {
 
   public apiBaseUrl: string = new ENV().apiBaseUrl();
   @Element() el: any;
+  releasesList: HTMLIonListElement;
   @Event() projectUpdated: EventEmitter;
+  @Prop({ connect: 'ion-modal-controller' }) modalCtrl: HTMLIonModalControllerElement;
   @Prop() id: string;
   @State() subtitle: string;
   @State() project: Project;
-  @State() releases: Array<ProjectRelease> = [];
+  @State() releases: Array<Release> = [];
   
   async componentWillLoad() {
 
     await this.loadProject();
   }
 
+  componentDidLoad() {
+
+    this.releasesList = this.el.querySelector('#releasesList');
+  }
+
+  @Listen('body:ionModalDidDismiss')
   async loadProject() {
 
     let response = await fetch(
@@ -73,9 +81,14 @@ export class ProjectDetail {
 
   async handleAddReleaseClick() {
 
+    const modal = await this.modalCtrl.create({
+      component: 'release-create'
+    });
+    
+    await modal.present();
   }
 
-  async handleDeleteReleaseClick(release: ProjectRelease) {
+  async handleDeleteReleaseClick(release: Release) {
 
     release;
   }
