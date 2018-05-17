@@ -1,7 +1,7 @@
 import { ENV } from '../environments/environment';
 declare const auth0: any;
 
-export class AuthenticationService {
+export class AuthService {
 
   private readonly clientUrl: string;
   private readonly authClient: any;
@@ -14,7 +14,7 @@ export class AuthenticationService {
       domain: 'atlasrfid.auth0.com',
       clientID: 'hf15I23vrah42cfDWsrHC4UGo1j6thpp',
       redirectUri: `${this.clientUrl}/`,
-      audience: 'https://atlasrfid.auth0.com/userinfo',
+      audience: 'https://kokio.net/api',
       responseType: 'token id_token',
       scope: 'openid',
       leeway: 60
@@ -39,10 +39,21 @@ export class AuthenticationService {
 
         try {
 
-          localStorage.setItem('access_token', hashSplit[0].split('=')[1]);
-          let expiresIn = parseInt(hashSplit[1].split('=')[1]);
-          localStorage.setItem('expires_at', JSON.stringify((expiresIn * 1000) + new Date().getTime()));
-          localStorage.setItem('id_token', hashSplit[0].split('=')[4]);
+          for (let hashPart of hashSplit) {
+            if (hashPart.includes('access_token')) {
+              localStorage.setItem('access_token', hashPart.split('=')[1]);
+            }
+            else if (hashPart.includes('expires_in')) {
+              let expiresIn = parseInt(hashPart.split('=')[1]);
+              localStorage.setItem('expires_at', JSON.stringify((expiresIn * 1000) + new Date().getTime()));
+            }
+            else if (hashPart.includes('id_token')) {
+              localStorage.setItem('id_token', hashPart.split('=')[1]);
+            }
+            else if (hashPart.includes('scope')) {
+              localStorage.setItem('scopes', hashPart.split('=')[1]);
+            }
+          }
           resolve("Authentication successful.");
         }
         catch {
@@ -69,6 +80,17 @@ export class AuthenticationService {
       const expiresAt = JSON.parse(expiryNote);
       resolve(new Date().getTime() < expiresAt);
     });
+  }
+
+  public getAuthorizationHeaderValue(): string {
+
+    return 'Bearer ' + localStorage.getItem('access_token');
+  }
+
+  public userHasScopes(scopes: Array<string>): boolean {
+
+    const grantedScopes = JSON.parse(localStorage.getItem('scopes')).split(' ');
+    return scopes.every(scope => grantedScopes.includes(scope));
   }
 
   public clearSession(): Promise<void> {

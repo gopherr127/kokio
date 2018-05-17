@@ -1,12 +1,12 @@
 import { Component, State } from '@stencil/core';
-import { AuthenticationService } from '../../services/auth-service';
+import { AuthService } from '../../services/auth-service';
 
 @Component({
   tag: 'app-root'
 })
 export class AppRoot {
   
-  public authSvc: AuthenticationService = new AuthenticationService();
+  public authSvc: AuthService = new AuthService();
   @State() isUserAuthenticated: boolean;
 
   // icons of interest: beaker, flask, arrow-dropright-circle, arrow-dropright, 

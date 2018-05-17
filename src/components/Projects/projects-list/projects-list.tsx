@@ -1,5 +1,6 @@
 import { Component, Element, Listen, Prop, State } from '@stencil/core';
 import { ENV } from '../../../environments/environment';
+import { AuthService } from '../../../services/auth-service';
 import { Project } from '../../../interfaces/interfaces';
 
 @Component({
@@ -8,6 +9,7 @@ import { Project } from '../../../interfaces/interfaces';
 export class ProjectsList {
 
   apiBaseUrl: string = new ENV().apiBaseUrl();
+  authSvc: AuthService = new AuthService();
   @Element() el: any;
   projectsList: HTMLIonListElement;
   @Prop({ connect: 'ion-modal-controller' }) modalCtrl: HTMLIonModalControllerElement;
@@ -32,12 +34,23 @@ export class ProjectsList {
     
     let response = await fetch(
       `${this.apiBaseUrl}/projects`, { 
-        method: "GET"
+        method: "GET",
+        headers: {
+          'Authorization': this.authSvc.getAuthorizationHeaderValue()
+        }
     });
 
     if (response.ok) {
 
       this.projects = await response.json();
+    }
+    else if (response.status === 401) {
+
+      this.displayErrorToast("You do not have permission to view projects.");
+    }
+    else {
+
+      this.displayErrorToast("An error occurred: " + await response.text());
     }
   }
 

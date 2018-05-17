@@ -9,7 +9,7 @@ export class ENV {
         return "http://localhost:3333";
       }
       case "prod": {
-        return "https://kokio.com";
+        return "https://kokio.net";
       }
       default: {
         return "";

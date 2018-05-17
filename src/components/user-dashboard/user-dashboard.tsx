@@ -1,12 +1,12 @@
 import { Component, Prop } from '@stencil/core';
-import { AuthenticationService } from '../../services/auth-service';
+import { AuthService } from '../../services/auth-service';
 
 @Component({
   tag: 'user-dashboard'
 })
 export class UserDashboard {
   
-  public authSvc: AuthenticationService = new AuthenticationService();
+  public authSvc: AuthService = new AuthService();
   @Prop({connect: 'ion-nav'}) nav;
 
   async componentWillLoad() {
